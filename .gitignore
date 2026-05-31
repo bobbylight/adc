@@ -3,6 +3,7 @@ backend/node_modules/
 frontend/node_modules/
 backend/*.db*
 settings.config.json
+.storybook/
 dist/
 coverage/
 *.iml
@@ -17,3 +18,6 @@ settings.local.json
 .env.deploy
 .env.development
 .env.production
+
+*storybook.log
+storybook-static

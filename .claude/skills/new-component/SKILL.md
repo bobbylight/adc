@@ -37,7 +37,7 @@ Create a new React component for the frontend following the project's establishe
    controlled vs. uncontrolled, MUI component choice with meaningfully different UX), ask the user.
    Do not ask about trivial details.
 
-5. **Create the files**: Create the three files below.
+5. **Create the files**: Create the four files below.
 
    **`frontend/src/components/<ComponentName>/<ComponentName>.tsx`**
    - Export a `<ComponentName>Props` interface
@@ -55,6 +55,21 @@ Create a new React component for the frontend following the project's establishe
    - Use Vitest (`describe`, `it`, `expect`) and `@testing-library/react`
    - Cover: renders without crashing, key prop variations, user interactions if any
    - Do not mock MUI internals; test behavior, not implementation
+   - Follow these guidelines for code organization and mocking:
+     - `beforeEach(() => vi.clearAllMocks())` in every top-level `describe`.
+     - `describe(ComponentName, ...)` — pass the component reference, not a string.
+     - `vi.mock(import('../../api/someApi'))` — dynamic-import form for module mocking.
+     - Use `vi.mocked(module.fn)` for type-safe mock references.
+     - Declare callback mocks (`const onClose = vi.fn()`) at the `describe` scope.
+     - Provide a local render helper (e.g. `const renderModal = () => render(...)`) to avoid repetition.
+     - Query with accessible selectors: `getByRole`, `getByLabelText`, `findBy*` for async.
+     - Use `userEvent.setup()` for user interactions; `waitFor` for async assertions.
+
+   **`frontend/src/components/<ComponentName>/__mocks__/<ComponentName>.stories.tsx`**
+   - Every component should have 1 or more stories for interactive testing of their primary states
+   - Use CSF3 format (`satisfies Meta<typeof Component>` + `StoryObj<typeof meta>`).
+   - Use `fn()` from `@storybook/test` for callback props.
+   - Components that call APIs on mount use MSW handlers via `parameters.msw.handlers`.
 
 6. **Wire it up** (if applicable): If the task specifies where to use the component (a page,
    a route, another component), make that integration change too.
