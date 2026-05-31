@@ -3,7 +3,6 @@ backend/node_modules/
 frontend/node_modules/
 backend/*.db*
 settings.config.json
-.storybook/
 dist/
 coverage/
 *.iml

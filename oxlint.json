@@ -9,6 +9,7 @@
     "es2022": true
   },
   "rules": {
+    "react/jsx-filename-extension": [ "error", { "extensions": [".tsx"] } ],
     "react/react-in-jsx-scope": "off",
     "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
     "no-console": "warn",
@@ -23,19 +24,24 @@
     "no-ternary": "off", // Used om spe TSX
     "sort-imports": "off", // Let import plugin do this
     "typescript/consistent-type-imports": "off",
+    "import/consistent-type-specifier-style": "off",
     "import/exports-last": "off",
+    "import/no-default-export": "off", // Unfortunately storybook requires default exports
     "import/no-named-export": "off",
     "import/prefer-default-export": "off",
     "unicorn/no-null": "off",
     "vitest/require-hook": "off",
     "vitest/no-hooks": "off",
+    "vitest/no-importing-vitest-globals": "off",
     "vitest/prefer-called-times": "off",
-    "vitest/prefer-importing-vitest-globals": "off"
+    "vitest/prefer-expect-assertions": [ "error", { "onlyFunctionsWithAsyncKeyword": true } ],
+    "vitest/prefer-to-be-truthy": "off",
+    "vitest/require-test-timeout": "off" // Global default is fine and avoids cluttering tests
   },
   "categories": {
     "correctness": "error",
     "perf": "error",
-    //"restriction": "error", -- todo: Enable me
+    "restriction": "error",
     "style": "error",
     "suspicious": "error"
   },
