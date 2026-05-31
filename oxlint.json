@@ -4,7 +4,7 @@
   "options": {
     "maxWarnings": 0
   },
-  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "backend/bin/**"],
+  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "backend/bin/**", "backend/*.d.ts"],
   "env": {
     "es2022": true
   },
@@ -35,6 +35,7 @@
     "vitest/no-importing-vitest-globals": "off",
     "vitest/prefer-called-times": "off",
     "vitest/prefer-expect-assertions": [ "error", { "onlyFunctionsWithAsyncKeyword": true } ],
+    "vitest/prefer-lowercase-title": "off",
     "vitest/prefer-to-be-truthy": "off",
     "vitest/require-test-timeout": "off" // Global default is fine and avoids cluttering tests
   },
@@ -48,11 +49,17 @@
   "overrides": [
     {
       "files": ["frontend/src/**/*.{ts,tsx}"],
-      "env": { "browser": true }
+      "env": { "browser": true },
+      "rules": {
+        "react/jsx-max-depth": ["error", { "max": 5 }]
+      }
     },
     {
       "files": ["backend/**/*.ts"],
-      "env": { "node": true }
+      "env": { "node": true },
+      "rules": {
+        "max-statements": "off"
+      }
     }
   ]
 }
