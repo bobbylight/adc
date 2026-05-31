@@ -1,5 +1,5 @@
 import cors from "cors";
-import express from "express";
+import express, { type Express } from "express";
 // import session from "express-session";
 // import passport from "passport";
 // import SqliteStoreFactory from "better-sqlite3-session-store";
@@ -23,7 +23,7 @@ declare module "express-session" {
 // 	next();
 // }
 
-export function createApp(_db?: Database.Database) {
+export function createApp(_db?: Database.Database): Express {
   const app = express();
 
   app.use(

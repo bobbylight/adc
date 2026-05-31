@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import App from "./app";
+import { App } from "./app";
 
 const meta = {
-  title: "App",
   component: App,
+  title: "App",
 } satisfies Meta<typeof App>;
 
 export default meta;

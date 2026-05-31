@@ -41,9 +41,12 @@ Create a new React component for the frontend following the project's establishe
 
    **`frontend/src/components/<ComponentName>/<ComponentName>.tsx`**
    - Export a `<ComponentName>Props` interface
-   - Export a default function component
+   - Use functional components - do not use class components or `React.FC`
+   - Use named exports, not default exports
    - Build UI from MUI primitives
-   - Keep the component focused; extract sub-components only when complexity demands it
+   - If a component is getting long, consider extracting a subcomponent. If the subcomponent is
+     specific to the parent component, keep it in the same directory. If it could be reused in
+     other components, consider putting it at the top level in `frontend/src/components/`.
 
    **`frontend/src/components/<ComponentName>/index.ts`**
    ```ts
@@ -70,6 +73,8 @@ Create a new React component for the frontend following the project's establishe
    - Use CSF3 format (`satisfies Meta<typeof Component>` + `StoryObj<typeof meta>`).
    - Use `fn()` from `@storybook/test` for callback props.
    - Components that call APIs on mount use MSW handlers via `parameters.msw.handlers`.
+   - Note: If this component has subcomponents in its same directory, don't make a separate story
+     file for a subscomponent unless it's substantial enough to warrant one - use your judgment here
 
 6. **Wire it up** (if applicable): If the task specifies where to use the component (a page,
    a route, another component), make that integration change too.

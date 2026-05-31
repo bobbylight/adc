@@ -1,8 +1,8 @@
-import React from "react";
+import React, { type ReactElement } from "react";
 import { CssBaseline } from "@mui/material";
 // import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-export default function App() {
+export function App(): ReactElement {
   return (
     //<ThemeProvider>
     <>
