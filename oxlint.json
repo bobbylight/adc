@@ -1,0 +1,52 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "vitest", "import", "jsx-a11y", "unicorn"],
+  "options": {
+    "maxWarnings": 0
+  },
+  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "backend/bin/**"],
+  "env": {
+    "es2022": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+    "no-console": "warn",
+    "vitest/require-mock-type-parameters": "off",
+    "import/no-unassigned-import": ["error", { "allow": ["@testing-library/jest-dom"] }],
+
+    // TODO: Review these individually later
+    "capitalized-comments": "off",
+    "func-style": "off",
+    "max-params": [ "error", { "max": 4 } ],
+    "no-magic-numbers": "off",
+    "no-ternary": "off", // Used om spe TSX
+    "sort-imports": "off", // Let import plugin do this
+    "typescript/consistent-type-imports": "off",
+    "import/exports-last": "off",
+    "import/no-named-export": "off",
+    "import/prefer-default-export": "off",
+    "unicorn/no-null": "off",
+    "vitest/require-hook": "off",
+    "vitest/no-hooks": "off",
+    "vitest/prefer-called-times": "off",
+    "vitest/prefer-importing-vitest-globals": "off"
+  },
+  "categories": {
+    "correctness": "error",
+    "perf": "error",
+    //"restriction": "error", -- todo: Enable me
+    "style": "error",
+    "suspicious": "error"
+  },
+  "overrides": [
+    {
+      "files": ["frontend/src/**/*.{ts,tsx}"],
+      "env": { "browser": true }
+    },
+    {
+      "files": ["backend/**/*.ts"],
+      "env": { "node": true }
+    }
+  ]
+}
