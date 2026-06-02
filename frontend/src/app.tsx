@@ -9,6 +9,16 @@ export function App(): ReactElement {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    function handleSessionExpired(): void {
+      setUser(null);
+    }
+    globalThis.addEventListener("session-expired", handleSessionExpired);
+    return (): void => {
+      globalThis.removeEventListener("session-expired", handleSessionExpired);
+    };
+  }, []);
+
+  useEffect(() => {
     fetch("/api/auth/me")
       .then((res): Promise<User | null> => {
         if (res.ok) {
