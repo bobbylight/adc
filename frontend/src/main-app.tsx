@@ -1,4 +1,5 @@
 import React, { useState, type ReactElement } from "react";
+import { fetchApi } from "./api";
 import {
   AppBar as MuiAppBar,
   Avatar,
@@ -24,13 +25,11 @@ export function MainApp({ user, onLogout }: MainAppProps): ReactElement {
     event.preventDefault();
     setMessage(null);
     setError(null);
-    const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
+    const res = await fetchApi(`/api/hello?name=${encodeURIComponent(name)}`);
     if (res.ok) {
       const data = (await res.json()) as { message: string };
       setMessage(data.message);
-    } else if (res.status === 401) {
-      setError("Not logged in.");
-    } else {
+    } else if (res.status !== 401) {
       setError("Something went wrong.");
     }
   }
